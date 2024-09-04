@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cameraButton"
-        tools:text="@string/description" />
+        android:hint="@string/write_your_description_of_image_here" />
 
     <Button
         android:id="@+id/uploadButton"

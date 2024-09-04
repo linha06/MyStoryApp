@@ -1,5 +1,6 @@
 package com.linha.mystoryapp.view.signup
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -17,6 +18,7 @@ import com.linha.mystoryapp.data.api.response.FileUploadResponse
 import com.linha.mystoryapp.databinding.ActivitySignupBinding
 import com.linha.mystoryapp.view.custom.CustomSignupButton
 import com.linha.mystoryapp.view.custom.PasswordEditText
+import com.linha.mystoryapp.view.login.LoginActivity
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -41,15 +43,18 @@ class SignupActivity : AppCompatActivity() {
         myEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
+
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 setMyButtonEnable()
             }
+
             override fun afterTextChanged(s: Editable) {
             }
         })
 
-
-
+        binding.loginTextButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 
     private fun setMyButtonEnable() {
@@ -80,7 +85,7 @@ class SignupActivity : AppCompatActivity() {
                 try {
                     val apiService = ApiConfig.getApiService()
                     val successResponse = apiService.register(name, email, password)
-                    val toastSuccess = successResponse.message.toString()
+                    val toastSuccess = successResponse.message
                     showToast(toastSuccess)
                     showLoading(false)
                 } catch (e: HttpException) {
@@ -90,26 +95,6 @@ class SignupActivity : AppCompatActivity() {
                     showLoading(false)
                 }
             }
-
-//            try {
-//                //get success message
-//                val message = repository.register(name, email, password).message
-//            } catch (e: HttpException) {
-//                //get error message
-//                val jsonInString = e.response()?.errorBody()?.string()
-//                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-//                val errorMessage = errorBody.message
-//            }
-
-//            AlertDialog.Builder(this).apply {
-//                setTitle("Yeah!")
-//                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan belajar coding.")
-//                setPositiveButton("Lanjut") { _, _ ->
-//                    finish()
-//                }
-//                create()
-//                show()
-//            }
         }
     }
 

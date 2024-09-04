@@ -29,4 +29,5 @@
     <string name="agree_policy"><![CDATA[I agree to the Terms & Condition and Privacy Policy]]></string>
     <string name="maps">maps</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="write_your_description_of_image_here">write your description of image here</string>
 </resources>

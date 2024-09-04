@@ -25,6 +25,7 @@ import com.linha.mystoryapp.view.ViewModelFactory
 import com.linha.mystoryapp.view.custom.CustomLoginButton
 import com.linha.mystoryapp.view.custom.PasswordEditText
 import com.linha.mystoryapp.view.main.MainActivity
+import com.linha.mystoryapp.view.signup.SignupActivity
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -59,6 +60,10 @@ class LoginActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
             }
         })
+
+        binding.signupTextButton.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
+        }
     }
 
     private fun setMyButtonEnable() {
